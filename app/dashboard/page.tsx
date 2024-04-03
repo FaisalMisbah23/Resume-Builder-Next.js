@@ -5,7 +5,7 @@ const DashboardPage = () => {
   return (
     <section className=" body-font">
     <div className="container px-5 mx-auto">
-    <h1 className="title-font text-3xl font-medium text-center pb-10">Explore Templates</h1>
+    <h1 className="text-center pb-10 sm:text-3xl text-2xl font-semibold text-primary">Explore Templates</h1>
       <div className="flex flex-wrap -m-4">
         <div className="p-4 md:w-1/3">
         <Link href='/resume-simple/contact'>

@@ -13,8 +13,8 @@
     left: 50%;
     top: 0;
     background-image:
-    radial-gradient(ellipse at center, #0000 24%,#de3500 25%,#de3500 64%,#0000 65%),
-    linear-gradient(to bottom, #0000 34%,#de3500 35%);
+    radial-gradient(ellipse at center, #0000 24%,#E4335A 25%,#E4335A 64%,#0000 65%),
+    linear-gradient(to bottom, #0000 34%,#E4335A 35%);
     background-size: 12px 12px , 100% auto;
     background-repeat: no-repeat;
     background-position: center top;
@@ -29,7 +29,7 @@
     transform: translateX(-50%);
     width: 66%;
     height: 60%;
-    background: linear-gradient(to bottom, #f79577 30%, #0000 31%);
+    background: linear-gradient(to bottom, #E4335A 30%, #0000 31%);
     background-size: 100% 16px;
     animation: writeDown 2s ease-out infinite;
  }

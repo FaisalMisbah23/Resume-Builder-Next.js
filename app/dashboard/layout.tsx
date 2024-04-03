@@ -11,7 +11,7 @@ export default async function DashboardLayout({
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   if (!user) {
-    return redirect("/");
+    return redirect("/signup");
   }
 
   return (

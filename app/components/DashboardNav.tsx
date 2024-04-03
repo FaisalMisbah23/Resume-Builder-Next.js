@@ -1,14 +1,13 @@
-"use client";
-
+"use client"
 import { cn } from "@/lib/utils";
 import { CreditCard, Home, Settings } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { navItems } from "./UserNav";
 
 export function DashboardNav() {
   const pathname = usePathname();
-  console.log(pathname);
+
   return (
     <nav className="grid items-start gap-2">
       {navItems.map((item, index) => (
