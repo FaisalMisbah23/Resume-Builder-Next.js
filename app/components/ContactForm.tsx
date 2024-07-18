@@ -21,10 +21,16 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialContact }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setContact(prevContact => ({
-      ...prevContact,
-      [name]: value,
-    }));
+    setContact(prevContact => {
+      if (prevContact) {
+        return {
+          ...prevContact,
+          [name]: value,
+        };
+      }
+      // This line will never be hit because we initialize `contact` with a non-null object.
+      return { name: '', email: '', phone: '', [name]: value };
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
