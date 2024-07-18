@@ -444,7 +444,7 @@ export default function Experience() {
               <div className="flex flex-col p-4 space-y-4 border rounded ">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <h1>
-                    You've saved your basic information. To make changes, click
+                    You have saved your basic information. To make changes, click
                     the edit button.
                   </h1>
                 </div>

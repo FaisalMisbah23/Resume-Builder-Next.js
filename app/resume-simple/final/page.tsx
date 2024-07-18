@@ -174,7 +174,7 @@ const Final = () => {
         <DialogHeader>
           <DialogTitle>Enter Resume Name</DialogTitle>
           <DialogDescription>
-            Click save when you're done.
+            Click save when You are done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
