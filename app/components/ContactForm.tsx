@@ -2,12 +2,22 @@
 
 import React, { useState } from 'react';
 
+interface Contact {
+  _id?: string;
+  name: string;
+  email: string;
+  phone: string;
+  // Add other contact fields here
+}
+
 interface ContactFormProps {
   initialContact: Contact | null;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ initialContact }) => {
-  const [contact, setContact] = useState<Contact | null>(initialContact);
+  const [contact, setContact] = useState<Contact>(
+    initialContact || { name: '', email: '', phone: '' } // Initialize with an empty object if initialContact is null
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -45,7 +55,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialContact }) => {
           type="text"
           id="name"
           name="name"
-          value={contact?.name || ''}
+          value={contact.name}
           onChange={handleChange}
         />
       </div>
@@ -55,7 +65,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialContact }) => {
           type="email"
           id="email"
           name="email"
-          value={contact?.email || ''}
+          value={contact.email}
           onChange={handleChange}
         />
       </div>
@@ -65,7 +75,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialContact }) => {
           type="tel"
           id="phone"
           name="phone"
-          value={contact?.phone || ''}
+          value={contact.phone}
           onChange={handleChange}
         />
       </div>
@@ -76,11 +86,3 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialContact }) => {
 };
 
 export default ContactForm;
-
-interface Contact {
-  _id?: string; // Use ? to denote optional fields
-  name: string;
-  email: string;
-  phone: string;
-  // Add other contact fields here
-}
