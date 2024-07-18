@@ -71,7 +71,7 @@ I have the ability of turning complex design concepts into highly optimized and 
             <div className="flex flex-col mb-10 lg:items-start items-center">
               <div className="flex-grow">
                 <h2 className=" text-lg title-font font-medium mb-3">Free Cover Letter</h2>
-                <p className="leading-relaxed text-base">With each of our professionally designed resume templates, you'll receive a FREE cover letter template that's perfectly matched to your chosen resume style. Our cover letter templates are designed to help you:</p>
+                <p className="leading-relaxed text-base">With each of our professionally designed resume templates, you shall receive a FREE cover letter template thats perfectly matched to your chosen resume style. Our cover letter templates are designed to help you:</p>
               </div>
             </div>
             <div className="flex flex-col mb-10 lg:items-start items-center">
@@ -89,7 +89,7 @@ I have the ability of turning complex design concepts into highly optimized and 
             <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium">Join the
               <br className="hidden lg:inline-block" />ceVBuilder family
             </h1>
-            <p className="mb-8 leading-relaxed">We're thrilled to welcome you to the ceVBuilder family, where your journey to crafting exceptional resumes begins!</p>
+            <p className="mb-8 leading-relaxed">We are thrilled to welcome you to the ceVBuilder family, where your journey to crafting exceptional resumes begins!</p>
             <div className="flex justify-center">
 { !user?      <RegisterLink> <Button className="inline-flex  border-0 py-2 px-6 rounded text-lg">Join ceVBuilder</Button></RegisterLink>
 :             <Link href={'/dashboard'}> <Button className="inline-flex  border-0 py-2 px-6 rounded text-lg">Join ceVBuilder</Button></Link>
