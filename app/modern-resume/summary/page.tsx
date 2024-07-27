@@ -108,7 +108,7 @@ export default function Experience() {
     setDeletingLoading(false)
   };
 
-  const handleValidation = (value) => {
+  const handleValidation = (value:any) => {
     if (!value.trim()) {
       setIsValid(false); // Set isValid state to false if value is empty
     } else {

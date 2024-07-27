@@ -19,22 +19,22 @@ import React, { useEffect, useRef, useState } from "react";
 import generatePDF from "react-to-pdf";
 
 const Final = () => {
-  const [skill, setSkill] = useState([]);
-  const [summary, setSummary] = useState([]);
-  const [experience, setExperience] = useState([]);
-  const [education, setEducation] = useState([]);
-  const [certificate, setCertificate] = useState([]);
-  const [contactData, setContactData] = useState([]);
-  const[resumeName,setResumeName]=useState('My Resume')
-  // manage loading...
-  const [loading,setLoading]=useState(false);
-
+  const [skill, setSkill] = useState<any[]>([]); 
+  const [summary, setSummary] = useState<any[]>([]); 
+  const [experience, setExperience] = useState<any[]>([]); 
+  const [education, setEducation] = useState<any[]>([]); 
+  const [certificate, setCertificate] = useState<any[]>([]); 
+  const [contactData, setContactData] = useState<any[]>([]); 
+  const [resumeName, setResumeName] = useState<string>('My Resume'); 
+  const [loading, setLoading] = useState<boolean>(false);
+  const [imageSrc, setImageSrc] = useState<string>(''); 
+  
   useEffect(() => {
     setLoading(true);
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/contact`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setContactData(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -50,7 +50,7 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/skills`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setSkill(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -66,7 +66,7 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/summary`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setSummary(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -82,7 +82,7 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/form`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setExperience(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -98,7 +98,7 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/education`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setEducation(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -114,7 +114,6 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/certificate`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCertificate(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -124,20 +123,25 @@ const Final = () => {
       });
   }, []);
   
-  const [imageSrc, setImageSrc] = useState('');
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]; // Use optional chaining to safely access files array
     const reader = new FileReader();
-
+  
     reader.onload = (e) => {
-      setImageSrc(e.target.result);
+      if (e.target && e.target.result) {
+        setImageSrc(e.target.result as string); // Cast result to string
+      }
     };
-
-    reader.readAsDataURL(file);
+  
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
-
-  const targetRef = useRef();
+  
+  
+  
+  const targetRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
@@ -191,13 +195,14 @@ const Final = () => {
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-            Name
-            </Label>
-            <Input id="name" value={resumeName} className="col-span-3" onChange={(e)=>setResumeName(e.target.value)} />
-          </div>
-        </div>
+  <div className="grid grid-cols-4 items-center gap-4">
+    <label htmlFor="name" className="text-right">
+      Name
+    </label>
+    <Input id="name" value={resumeName} className="col-span-3" onChange={(e) => setResumeName(e.target.value)} />
+  </div>
+</div>
+
         <DialogFooter>
           <Button onClick={() => generatePDF(targetRef, {filename: `${resumeName}`})} type="submit">Save</Button>
         </DialogFooter>
@@ -254,19 +259,19 @@ const Final = () => {
                       <div className="ml-2 truncate">{item.email}</div>
                     </div>
                     <div className="flex items-center my-1">
-                      <a className="w-6 text--700 hover:text-orange-600" aria-label="Visit TrendyMinds YouTube" href target="_blank">
+                      <a className="w-6 text--700 hover:text-orange-600" aria-label="Visit TrendyMinds YouTube"  target="_blank">
                        <PhoneCall className="h-5"/>
                       </a>
                       <div>{item.phone}</div>
                     </div>
                     <div className="flex items-center my-1">
-                      <a className="w-6 text--700 hover:text-orange-600" aria-label="Visit TrendyMinds Facebook" href target="_blank">
+                      <a className="w-6 text--700 hover:text-orange-600" aria-label="Visit TrendyMinds Facebook"  target="_blank">
                        <Linkedin className="h-5"/>
                       </a>
                       <div>{item.linkedin}</div>
                     </div>
                     <div className="flex items-center my-1">
-                      <a className="w-6 text--700 hover:text-orange-600" aria-label="Visit TrendyMinds Twitter" href target="_blank">
+                      <a className="w-6 text--700 hover:text-orange-600" aria-label="Visit TrendyMinds Twitter"  target="_blank">
                        <Link className="h-5"/>
                       </a>
                       <div>{item.portfolio}</div>

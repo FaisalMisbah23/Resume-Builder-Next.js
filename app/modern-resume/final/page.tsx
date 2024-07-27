@@ -42,7 +42,6 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/contact`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setContactData(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -57,7 +56,6 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/skills`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setSkill(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -72,7 +70,6 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/summary`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setSummary(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -87,7 +84,6 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/form`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setExperience(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -102,7 +98,6 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/education`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setEducation(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -117,7 +112,6 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/certificate`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCertificate(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -127,7 +121,7 @@ const Final = () => {
       });
   }, []);
 
-  const targetRef = useRef();
+  const targetRef = useRef<HTMLElement | null>(null);
   return (
     <>
       {loading && <Loading message="Loading data..." />}
@@ -157,16 +151,16 @@ const Final = () => {
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
                       <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="name" className="text-right">
+                        <label htmlFor="name" className="text-right">
                           Name
-                        </Label>
+                        </label>
                         <Input
                           id="name"
                           value={resumeName}
                           className="col-span-3"
                           onChange={(e) => setResumeName(e.target.value)}
                         />
-                      </div>
+                      </div>                      
                     </div>
                     <DialogFooter>
                       <Button
@@ -190,7 +184,7 @@ const Final = () => {
               <section ref={targetRef} className="p-3 my-auto mx-auto max-w-3xl bg-gray-100 rounded-2xl border-4 border-gray-700 sm:p-9 md:p-16 lg:mt-6 print:border-0 page print:max-w-letter print:max-h-letter print:mx-0 print:my-o xsm:p-8 print:bg-white md:max-w-letter md:h-letter lg:h-letter">
                 {/* Name --------------------------------------------------------------------------------------------------*/}
                 <header className="inline-flex justify-between items-baseline mb-2 w-full align-top border-b-4 border-gray-300">
-                  {contactData?.map((item) => (
+                  {contactData?.map((item:any) => (
                     <section key={item._id} className="block">
                       <h1 className="mb-0 text-5xl font-bold text-gray-700">
                         {item.name}
@@ -211,7 +205,7 @@ const Final = () => {
                     <section className="pb-2 mt-4 mb-0 first:mt-0">
                       {/* To keep in the same column ------------------------------------------------------------------------*/}
                       <section className="break-inside-avoid">
-                        {contactData?.map((item) => (
+                        {contactData?.map((item:any) => (
                           <section
                             key={item._id}
                             className="pb-4 mb-2 border-b-4 border-gray-300 break-inside-avoid"
@@ -270,7 +264,7 @@ const Final = () => {
                         <h2 className="mb-2 text-xl font-bold tracking-widest text-gray-700 print:font-normal">
                           SUMMARY
                         </h2>
-                        {summary?.map((item) => (
+                        {summary?.map((item:any) => (
                           <section
                             key={item._id}
                             className="mb-2 break-inside-avoid"
@@ -289,7 +283,7 @@ const Final = () => {
                           EXPERIENCE
                         </h2>
                         {/*Job 1*/}
-                        {experience?.map((item) => (
+                        {experience?.map((item:any) => (
                         <section key={item._id} className="mb-2 border-b-2 border-gray-300 break-inside-avoid">
                           <header>
                             <h3 className="font-semibold text-gray-800 text-md leading-snugish">
@@ -319,7 +313,7 @@ const Final = () => {
                           EDUCATION
                         </h2>
                         {/* school -------------------------------------------------------------------------*/}
-                        {education?.map((item) => (
+                        {education?.map((item:any) => (
                           <section
                             key={item._id}
                             className="mt-2 border-b-2 break-inside-avoid"
@@ -369,7 +363,7 @@ const Final = () => {
                           CERTIFICATION
                         </h2>
                         {/* school -------------------------------------------------------------------------*/}
-                        {certificate?.map((item) => (
+                        {certificate?.map((item:any) => (
                           <section
                             key={item._id}
                             className="mt-2 border-b-2 break-inside-avoid"
@@ -417,7 +411,7 @@ const Final = () => {
                         </h2>
                         <section className="mb-0 break-inside-avoid">
                           <section className="mt-1 last:pb-1">
-                          {skill?.map((item) => (
+                          {skill?.map((item:any) => (
                             <ul key={item._id} className="flex flex-wrap -mb-1 font-bold leading-relaxed text-md -mr-1.6">
                               <li className="p-1.5 mb-1 leading-relaxed text-white bg-gray-800 mr-1.6 print:bg-white print:border-inset">
                                 {item.tasks}

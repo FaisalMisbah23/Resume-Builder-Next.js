@@ -3,14 +3,6 @@ import Loading from "@/app/components/Loading";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Label } from "@radix-ui/react-dropdown-menu";
@@ -34,7 +26,7 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/contact`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setContactData(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -50,7 +42,7 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/skills`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setSkill(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -66,7 +58,7 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/summary`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setSummary(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -82,7 +74,7 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/form`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setExperience(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -98,7 +90,7 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/education`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setEducation(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -114,7 +106,7 @@ const Final = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/certificate`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         setCertificate(data);
         setLoading(false); // Move this line inside the .then() block
       })
@@ -125,7 +117,8 @@ const Final = () => {
   }, []);
   
 
-  const targetRef = useRef();
+  const targetRef = useRef<HTMLDivElement>(null);
+
   return (
     <>
     {loading && <Loading message="Loading data..." />}
@@ -179,9 +172,9 @@ const Final = () => {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
+            <label htmlFor="name" className="text-right">
             Name
-            </Label>
+            </label>
             <Input id="name" value={resumeName} className="col-span-3" onChange={(e)=>setResumeName(e.target.value)} />
           </div>
         </div>
@@ -196,7 +189,7 @@ const Final = () => {
     </div>
         <div className="container mx-auto py-4 px-4">
           <div ref={targetRef} id="pdf" className=" p-6 rounded-lg shadow-lg">
-            {contactData?.map((item) => (
+            {contactData?.map((item:any) => (
               <>
                 {" "}
                 <h1 key={item._id} className="text-3xl font-semibold">
@@ -207,19 +200,19 @@ const Final = () => {
             ))}
             <hr className="my-4" />
             <h2 className="text-xl font-semibold mb-2">Summary</h2>
-            {summary?.map((item) => (
+            {summary?.map((item:any) => (
               <p key={item._id} className="  ">
                 {item.tasks}
               </p>
             ))}
             <h2 className="text-xl font-semibold mt-4 mb-2">Skills</h2>
             <ul className="list-disc list-inside   ">
-              {skill?.map((item) => (
+              {skill?.map((item:any) => (
                 <li key={item._id}>{item.tasks}</li>
               ))}
             </ul>
             <h2 className="text-xl font-semibold mt-4 mb-2">Experience</h2>
-            {experience?.map((item) => (
+            {experience?.map((item:any) => (
               <div key={item._id} className="mb-4">
                 <h3 className="text-lg font-semibold">
                   {item.role}, {item.company}
@@ -231,7 +224,7 @@ const Final = () => {
               </div>
             ))}
             <h2 className="text-xl font-semibold mt-4 mb-2">Education</h2>
-            {education?.map((item) => (
+            {education?.map((item:any) => (
               <div key={item._id} className="mb-4">
                 <h3 className="text-lg font-semibold">{item.degree}</h3>
                 <p className="  ">{item.university}</p>
@@ -239,7 +232,7 @@ const Final = () => {
               </div>
             ))}
             <h2 className="text-xl font-semibold mt-4 mb-2">Certifications</h2>
-            {certificate?.map((item) => (
+            {certificate?.map((item:any) => (
               <div key={item._id} className="mb-4">
                 <h3 className="text-lg font-semibold">{item.course}</h3>
                 <p className="  ">{item.insitute}</p>
@@ -247,7 +240,7 @@ const Final = () => {
               </div>
             ))}
             <h2 className="text-xl font-semibold mt-4 mb-2">Contact</h2>
-            {contactData?.map((item) => (
+            {contactData?.map((item:any) => (
               <ul key={item._id} className="list-disc list-inside   ">
                 <li>
                   Email:{" "}
